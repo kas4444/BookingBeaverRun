@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUp, ChevronRight, Heart, RotateCcw, Trophy, Zap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, ChevronRight, Heart, Music2, RotateCcw, Trophy } from 'lucide-react';
 import beaverSrc from '@/assets/sprites/beaver.png';
 
 type GameMode = 'ready' | 'playing' | 'gameover' | 'victory';
@@ -620,7 +620,7 @@ function App() {
 
       {/* Mute toggle - always visible */}
       <button className="mute-btn" onClick={() => setMuted((v) => !v)} aria-label={muted ? 'Unmute' : 'Mute'}>
-        <Zap size={16} fill={muted ? 'none' : 'currentColor'} />
+        <Music2 size={17} strokeWidth={2.5} aria-hidden="true" />
       </button>
 
       {/* In-game HUD */}
