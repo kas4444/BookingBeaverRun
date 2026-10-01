@@ -61,6 +61,7 @@ function App() {
     bgOffset: 0,
     links: [] as Array<{ from: string; to: string }>,
     lastTaskKey: 'BASE',
+    checkpoint: { x: START_X, y: FLOOR_Y },
   });
   const [screen, setScreen] = useState<Screen>('menu');
   const [storyScene, setStoryScene] = useState(0);
@@ -106,6 +107,7 @@ function App() {
     game.particles = [];
     game.links = [];
     game.lastTaskKey = 'BASE';
+    game.checkpoint = { x: START_X, y: FLOOR_Y };
     game.shake = 0;
     game.mode = 'playing';
     setScore(0);
@@ -513,6 +515,7 @@ function App() {
             player.y = p.y - player.height;
             player.vy = 0;
             player.grounded = true;
+            game.checkpoint = { x: p.x + p.w / 2, y: p.y };
             if (!wasGrounded) {
               player.pose = 'land';
               player.landTimer = 14;
@@ -552,7 +555,13 @@ function App() {
           game.shake = 16;
           beep(110, 0.18, 'sawtooth');
           if (game.lives <= 0) { game.mode = 'gameover'; setMode('gameover'); }
-          else { player.x = Math.max(START_X, player.x - 260); player.y = START_Y; player.vx = 0; player.vy = 0; }
+          else {
+            const cp = game.checkpoint;
+            player.x = clamp(cp.x - player.width / 2, 0, WORLD_WIDTH - player.width);
+            player.y = cp.y - player.height - 2;
+            player.vx = 0;
+            player.vy = 0;
+          }
         }
 
         if (player.x > 6100) {
