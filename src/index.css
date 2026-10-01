@@ -42,6 +42,8 @@ body { background: #0a1020; overflow: hidden; }
   transition: .2s ease;
 }
 .mute-btn:hover { color: #4c8fff; border-color: rgba(76, 143, 255, .4); transform: scale(1.08); }
+.mute-btn:not(.is-muted) { color: #ffca52; border-color: rgba(255, 202, 82, .55); background: rgba(255, 202, 82, .12); box-shadow: 0 0 18px rgba(255, 202, 82, .18); }
+.mute-btn.is-muted { color: #7180a3; border-color: rgba(113, 128, 163, .35); background: rgba(13, 22, 51, .52); box-shadow: none; }
 
 /* ─── Overlays ─── */
 .overlay {

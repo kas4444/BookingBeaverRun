@@ -619,8 +619,8 @@ function App() {
       <canvas ref={canvasRef} className="game-canvas" aria-label="Apwide Beaver Run game" />
 
       {/* Mute toggle - always visible */}
-      <button className="mute-btn" onClick={() => setMuted((v) => !v)} aria-label={muted ? 'Unmute' : 'Mute'}>
-        <Music2 size={17} strokeWidth={2.5} aria-hidden="true" />
+      <button className={`mute-btn${muted ? ' is-muted' : ''}`} onClick={() => setMuted((v) => !v)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted}>
+        <Music2 size={17} strokeWidth={2.5} fill={muted ? 'none' : 'currentColor'} aria-hidden="true" />
       </button>
 
       {/* In-game HUD */}
